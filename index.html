@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixture Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark"><span class="brand-dot"></span> fixture room</div>
+      <div class="sidebar-section">
+        <p class="eyebrow">Workspace</p>
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">▦</span> Overview</button>
+        <button class="nav-item" data-view="fixtures"><span class="nav-icon">◷</span> Fixtures</button>
+        <button class="nav-item" data-view="math"><span class="nav-icon">∑</span> Math league</button>
+      </div>
+      <div class="sidebar-note">
+        <span class="status-dot"></span>
+        <div><strong>Local workspace</strong><small>Changes save in this browser</small></div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Competition control room</p>
+          <h1>Keep every fixture moving.</h1>
+        </div>
+        <div class="top-actions"><button class="primary-button share-button" id="shareUpdate">↗ Share update</button><button class="outline-button" id="resetData">↻ Reset data</button></div>
+      </header>
+
+      <div id="dashboardView" class="view active-view">
+        <section class="hero-strip">
+          <div>
+            <span class="kicker">Season 01 / live board</span>
+            <h2>One result in.<br><em>Everything recalculated.</em></h2>
+            <p>Record a score once and let the table, form guide, and next matchups do the admin.</p>
+          </div>
+          <div class="hero-orbit"><span>PLAY</span><strong>→</strong><small>UPDATE</small></div>
+        </section>
+
+        <section class="stats-grid" id="statsGrid"></section>
+
+        <div class="dashboard-grid">
+          <section class="panel table-panel">
+            <div class="panel-heading"><div><span class="section-label">01 / standings</span><h3>Competition table</h3></div><span class="live-pill"><i></i> live</span></div>
+            <div class="table-wrap"><table><thead><tr><th>#</th><th>Participant</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th><th>Pts</th></tr></thead><tbody id="standingsBody"></tbody></table></div>
+          </section>
+          <section class="panel next-panel">
+            <div class="panel-heading"><div><span class="section-label">02 / up next</span><h3>Next fixtures</h3></div><button class="text-button" data-view="fixtures">See all →</button></div>
+            <div id="nextFixtures"></div>
+          </section>
+        </div>
+      </div>
+
+      <div id="fixturesView" class="view">
+        <section class="page-heading"><span class="section-label">Fixture desk</span><h2>Schedule & results</h2><p>Choose a fixture, enter the final score, and the table updates instantly.</p></section>
+        <div class="fixture-layout"><section class="panel fixture-list-panel"><div class="panel-heading"><div><span class="section-label">All matches</span><h3>Football fixtures</h3></div><span id="fixtureProgress" class="mono-label"></span></div><div id="fixtureList"></div></section><section class="panel result-panel"><span class="section-label">Selected match</span><h3 id="selectedMatchTitle">Select a fixture</h3><p id="selectedMatchMeta" class="muted">Pick an upcoming match from the list.</p><div id="scoreForm" class="score-form hidden"><div class="score-inputs"><label><span id="homeLabel">Home</span><input id="homeScore" type="number" min="0" max="99" value="0"></label><b>:</b><label><span id="awayLabel">Away</span><input id="awayScore" type="number" min="0" max="99" value="0"></label></div><button class="primary-button" id="saveResult">Save result <span>→</span></button><button class="danger-button" id="clearResult">Clear result</button></div></section></div>
+      </div>
+
+      <div id="mathView" class="view">
+        <section class="page-heading math-heading"><span class="section-label">Math league</span><h2>Who plays with who?</h2><p>A fair rotating matchup board for your maths sessions. Complete a round and the next one is generated for you.</p></section>
+        <div class="math-layout"><section class="panel participants-panel"><div class="panel-heading"><div><span class="section-label">Players</span><h3>Maths competitors</h3></div><span id="playerCount" class="mono-label"></span></div><div class="add-player"><input id="playerInput" placeholder="Add a name" maxlength="20"><button class="primary-button" id="addPlayer">Add <span>+</span></button></div><div id="playerList"></div></section><section class="panel rounds-panel"><div class="panel-heading"><div><span class="section-label">Current round</span><h3 id="roundTitle">Round 01</h3></div><button class="outline-button small" id="nextRound">New round ↗</button></div><p class="muted" id="roundHint"></p><div id="matchupList"></div></section></div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
