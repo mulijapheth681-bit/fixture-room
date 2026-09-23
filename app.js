@@ -1,12 +1,12 @@
 const participantNames = ['Asmicardo-254','1Junior','Targter','Drayzen254','Reformedbandict7','Nohope'];
-const defaultData = { clubs: [...participantNames], fixtures: [], players: [...participantNames], round: 1, matchups: [], completed: [], playerSetVersion: 5 };
+const defaultData = { clubs: [...participantNames], fixtures: [], players: [...participantNames], round: 1, matchups: [], completed: [], playerSetVersion: 6 };
 const dates = ['Sep 24','Sep 26','Sep 28','Oct 01','Oct 03','Oct 05','Oct 08','Oct 10','Oct 12'];
 function readSharedData(){if(!location.hash.startsWith('#state='))return null;try{return JSON.parse(decodeURIComponent(location.hash.slice(7)));}catch(error){return null;}}
 let data = readSharedData() || JSON.parse(localStorage.getItem('fixture-room-data') || 'null') || defaultData;
-if (data.playerSetVersion !== 5) { data.clubs = [...participantNames]; data.players = [...participantNames]; data.fixtures = makeFixtures(data.clubs); data.round = 1; data.matchups = []; data.completed = []; data.playerSetVersion = 5; save(); }
+if (data.playerSetVersion !== 6) { data.clubs = [...participantNames]; data.players = [...participantNames]; data.fixtures = makeFixtures(data.clubs); data.round = 1; data.matchups = []; data.completed = []; data.playerSetVersion = 6; save(); }
 if (!data.fixtures.length) data.fixtures = makeFixtures(data.clubs);
 let selectedFixture = null;
-function makeFixtures(clubs){ const list=[]; for(let i=0;i<clubs.length;i+=2){ for(let round=0;round<clubs.length-1;round++){ const home=clubs[(i/2+round)%clubs.length]; const away=clubs[(clubs.length-1-i/2+round)%clubs.length]; if(home!==away) list.push({id:list.length+1,home,away,date:dates[list.length%dates.length],homeScore:null,awayScore:null}); } } return list.slice(0, 12); }
+function makeFixtures(clubs){ const list=[]; for(let homeIndex=0;homeIndex<clubs.length;homeIndex++){ for(let awayIndex=homeIndex+1;awayIndex<clubs.length;awayIndex++){ list.push({id:list.length+1,home:clubs[homeIndex],away:clubs[awayIndex],date:dates[list.length%dates.length],homeScore:null,awayScore:null}); } } return list; }
 function save(){ localStorage.setItem('fixture-room-data', JSON.stringify(data)); }
 function escapeHtml(value){ return String(value).replace(/[&<>'"]/g, char=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[char])); }
 function standings(){ const table=Object.fromEntries(data.clubs.map(club=>[club,{club,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0}])); data.fixtures.filter(f=>f.homeScore!==null).forEach(f=>{const h=table[f.home],a=table[f.away]; h.p++;a.p++;h.gf+=f.homeScore;h.ga+=f.awayScore;a.gf+=f.awayScore;a.ga+=f.homeScore;if(f.homeScore>f.awayScore){h.w++;a.l++;h.pts+=3}else if(f.homeScore<f.awayScore){a.w++;h.l++;a.pts+=3}else{h.d++;a.d++;h.pts++;a.pts++}}); return Object.values(table).sort((a,b)=>b.pts-a.pts||(b.gf-b.ga)-(a.gf-a.ga)||b.gf-a.gf); }
