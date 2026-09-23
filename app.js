@@ -1,9 +1,9 @@
-const participantNames = ['Asmicardo-254','1Junior','Targter','Drayzen254','Reformedbandict7','Paizonei'];
-const defaultData = { clubs: [...participantNames], fixtures: [], players: [...participantNames], round: 1, matchups: [], completed: [], playerSetVersion: 3 };
+const participantNames = ['Asmicardo-254','1Junior','Targter','Drayzen254','Reformedbandict7'];
+const defaultData = { clubs: [...participantNames], fixtures: [], players: [...participantNames], round: 1, matchups: [], completed: [], playerSetVersion: 4 };
 const dates = ['Sep 24','Sep 26','Sep 28','Oct 01','Oct 03','Oct 05','Oct 08','Oct 10','Oct 12'];
 function readSharedData(){if(!location.hash.startsWith('#state='))return null;try{return JSON.parse(decodeURIComponent(location.hash.slice(7)));}catch(error){return null;}}
 let data = readSharedData() || JSON.parse(localStorage.getItem('fixture-room-data') || 'null') || defaultData;
-if (data.playerSetVersion !== 3) { data.clubs = [...participantNames]; data.players = [...participantNames]; data.fixtures = makeFixtures(data.clubs); data.round = 1; data.matchups = []; data.completed = []; data.playerSetVersion = 3; save(); }
+if (data.playerSetVersion !== 4) { data.clubs = [...participantNames]; data.players = [...participantNames]; data.fixtures = makeFixtures(data.clubs); data.round = 1; data.matchups = []; data.completed = []; data.playerSetVersion = 4; save(); }
 if (!data.fixtures.length) data.fixtures = makeFixtures(data.clubs);
 let selectedFixture = null;
 function makeFixtures(clubs){ const list=[]; for(let i=0;i<clubs.length;i+=2){ for(let round=0;round<clubs.length-1;round++){ const home=clubs[(i/2+round)%clubs.length]; const away=clubs[(clubs.length-1-i/2+round)%clubs.length]; if(home!==away) list.push({id:list.length+1,home,away,date:dates[list.length%dates.length],homeScore:null,awayScore:null}); } } return list.slice(0, 12); }
