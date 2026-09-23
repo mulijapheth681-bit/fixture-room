@@ -4,3 +4,4 @@
 @media(max-width:450px){.outline-button{font-size:0;padding:10px}.outline-button:first-letter{font-size:15px}.hero-strip p{max-width:245px}.hero-strip h2{font-size:28px}.stats-grid{gap:8px}.stat{padding:14px}.stat b{font-size:25px}}
 .primary-button{background:var(--lime);color:#101510}.primary-button:hover{background:#c7e45b}.fixture-item:hover,.fixture-item.selected{background:#1d2822}.toast{background:#f3f1e9;color:#101510}.player-badge{width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--lime);color:#172018;font:500 9px 'DM Mono';margin-right:8px;vertical-align:middle}
 .top-actions{display:flex;gap:8px;align-items:center}.share-button{margin-top:0}
+.dashboard-grid{grid-template-columns:1fr}.table-panel{width:100%}
