@@ -17,7 +17,6 @@
         <p class="eyebrow">Workspace</p>
         <button class="nav-item active" data-view="dashboard"><span class="nav-icon">▦</span> Overview</button>
         <button class="nav-item" data-view="fixtures"><span class="nav-icon">◷</span> Fixtures</button>
-        <button class="nav-item" data-view="math"><span class="nav-icon">∑</span> Math league</button>
       </div>
       <div class="sidebar-note">
         <span class="status-dot"></span>
@@ -63,13 +62,9 @@
         <div class="fixture-layout"><section class="panel fixture-list-panel"><div class="panel-heading"><div><span class="section-label">All matches</span><h3>Football fixtures</h3></div><span id="fixtureProgress" class="mono-label"></span></div><div id="fixtureList"></div></section><section class="panel result-panel"><span class="section-label">Selected match</span><h3 id="selectedMatchTitle">Select a fixture</h3><p id="selectedMatchMeta" class="muted">Pick an upcoming match from the list.</p><div id="scoreForm" class="score-form hidden"><div class="score-inputs"><label><span id="homeLabel">Home</span><input id="homeScore" type="number" min="0" max="99" value="0"></label><b>:</b><label><span id="awayLabel">Away</span><input id="awayScore" type="number" min="0" max="99" value="0"></label></div><button class="primary-button" id="saveResult">Save result <span>→</span></button><button class="danger-button" id="clearResult">Clear result</button></div></section></div>
       </div>
 
-      <div id="mathView" class="view">
-        <section class="page-heading math-heading"><span class="section-label">Math league</span><h2>Who plays with who?</h2><p>A fair rotating matchup board for your maths sessions. Complete a round and the next one is generated for you.</p></section>
-        <div class="math-layout"><section class="panel participants-panel"><div class="panel-heading"><div><span class="section-label">Players</span><h3>Maths competitors</h3></div><span id="playerCount" class="mono-label"></span></div><div class="add-player"><input id="playerInput" placeholder="Add a name" maxlength="20"><button class="primary-button" id="addPlayer">Add <span>+</span></button></div><div id="playerList"></div></section><section class="panel rounds-panel"><div class="panel-heading"><div><span class="section-label">Current round</span><h3 id="roundTitle">Round 01</h3></div><button class="outline-button small" id="nextRound">New round ↗</button></div><p class="muted" id="roundHint"></p><div id="matchupList"></div></section></div>
-      </div>
     </section>
   </main>
   <div id="toast" class="toast"></div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
